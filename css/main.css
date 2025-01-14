@@ -43,11 +43,9 @@ h2 {
 .checkbox-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: left;
 }
 .checkbox-container-item {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    text-align: left;
 }
