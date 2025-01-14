@@ -8,7 +8,7 @@
     <!-- end: META -->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <title>Gestion de Expedientes Digitales</title>
+    <title>Gestion de Expedientes Digitales a</title>
     <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/bootstrap.css" rel="stylesheet">
     <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/bootstrap-theme.css" rel="stylesheet">
     <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/bootstrap-responsive.css" rel="stylesheet">
@@ -55,35 +55,47 @@
 
                 </tbody>
                 </table>
-
                 <script>
-                  fetch('https://cristian412.github.io/experimento-providencia/datos/ObtenerExpedientes.json')
-                    .then(response => response.json())
-                    .then(data => {
-                      console.log(data);
-                      // Aquí procesás los datos como desees
-                      // Generar filas dinámicas
-                      casos.forEach(caso => {
-                        const tr = document.createElement('tr');
-                        tr.setAttribute('role', 'row');
-                        tr.className = 'group-item group-item-JUZ-PAZ';
-                        tr.setAttribute('data-group', 'JUZ-PAZ');
+                    // URL del archivo JSON
+                    const url = 'datos/ObtenerExpedientes.txt';
 
-                        // Configurar el redireccionamiento
-                        tr.setAttribute('onclick', `window.location.href='caso.html?id=${caso.CodCasoJudicial}'`);
+                    // Seleccionar el tbody
+                    const tbody = document.getElementById('tabla-casos');
 
-                        // Agregar celdas
-                        tr.innerHTML = `
-                          <td>${caso.NroExpedienteNumero}</td>
-                          <td>${caso.NroExpedienteAnio}</td>
-                          <td>${caso.Caratula}</td>
-                          <td>${caso.EstadoCasoDespacho}</td>
-                        `;
+                    // Función para cargar y mostrar los datos
+                    const cargarDatos = async () => {
+                      try {
+                        // Hacer la solicitud al archivo JSON
+                        const respuesta = await fetch(url);
 
-                        // Agregar la fila a la tabla
-                        tbody.appendChild(tr);
-                    })
-                    .catch(error => console.error('Error al cargar los datos:', error));
+                        // Verificar si la respuesta es exitosa
+                        if (!respuesta.ok) {
+                          throw new Error(`Error al cargar los datos: ${respuesta.statusText}`);
+                        }
+
+                        // Convertir la respuesta a JSON
+                        const casos = await respuesta.json();
+
+                        // Generar filas dinámicas
+                        casos.forEach(caso => {
+                          const tr = document.createElement('tr');
+                          tr.setAttribute('role', 'row');
+                          tr.className = 'group-item group-item-JUZ-PAZ';
+                          tr.setAttribute('data-group', 'JUZ-PAZ');
+
+                          // Configurar el redireccionamiento
+                          tr.setAttribute('onclick', `window.location.href='caso.html?id=${caso.CodCasoJudicial}'`);
+
+                          // Agregar celdas
+                          tr.innerHTML = `
+                            <td>${caso.NroExpedienteNumero}</td>
+                            <td>${caso.NroExpedienteAnio}</td>
+                            <td>${caso.Caratula}</td>
+                            <td>${caso.EstadoCasoDespacho}</td>
+                          `;
+
+                          // Agregar la fila a la tabla
+                          tbody.appendChild(tr);
                         });
                       } catch (error) {
                         console.error('Error al cargar los datos:', error);
