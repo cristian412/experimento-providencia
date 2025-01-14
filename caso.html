@@ -98,6 +98,8 @@
         const url = 'datos/ActuacionesCaso.json';
         // Seleccionar el tbody
         const tbody = document.getElementById('actuaciones-caso-lista');
+        // se define el contenedor en Col 2
+        const container = this.document.getElementById('iframe-pdf');
 
         function convertirFecha(fechaRaw) {
         const timestamp = parseInt(fechaRaw.match(/\d+/)[0], 10);
