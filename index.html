@@ -56,12 +56,17 @@
                 </tbody>
                 </table>
                 <script>
-                  
                     // URL del archivo JSON
                     const url = 'datos/ObtenerExpedientes.json';
-
                     // Seleccionar el tbody
                     const tbody = document.getElementById('tabla-casos');
+
+                    function convertirFecha(fechaRaw) {
+                      const timestamp = parseInt(fechaRaw.match(/\d+/)[0], 10);
+                      const fecha = new Date(timestamp);
+                      const fechaLegible = fecha.toLocaleString();
+                      return fechaLegible;
+                    }
 
                     // Función para cargar y mostrar los datos
                     const cargarDatos = async () => {
@@ -90,6 +95,7 @@
                           // Agregar celdas
                           tr.innerHTML = `
                             <td>${caso.NroExpedienteNumero}</td>
+                            <td>${convertirFecha(caso.FechaSorteo)}</td>
                             <td>${caso.NroExpedienteAnio}</td>
                             <td>${caso.Caratula}</td>
                             <td>${caso.EstadoCasoDespacho}</td>
