@@ -191,7 +191,11 @@
                 tr.setAttribute('data-group', 'ejecutivo');
 
                 // Construir la URL del PDF
-                const url = `https://unionnegocios.com.py/sistema/content/csj/pdf/${caso.CodActuacionCaso}.pdf`;
+                var codigo = caso.CodActuacionCaso;
+                if ( caso.codDocumento != null ) {
+                    var codigo = caso.codDocumento;
+                }
+                const url = `https://unionnegocios.com.py/sistema/content/csj/pdf/${codigo}.pdf`;
 
                 // Configurar el redireccionamiento con un iframe al hacer clic
                 tr.setAttribute('onclick', `container.innerHTML = '<iframe src="${url}" style="width:100%;height:500px"></iframe>';`);
