@@ -45,3 +45,8 @@ h2 {
     flex-wrap: wrap;
     justify-content: space-around;
 }
+.checkbox-container-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
