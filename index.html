@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- start: META -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1"/><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <!-- end: META -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Gestion de Expedientes Digitales</title>
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/bootstrap.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/bootstrap-theme.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/bootstrap-responsive.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/all-animation.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/assets/css/open-sans.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/assets/css/main.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/assets/css/main-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.csj.gov.py/gestionelectronicajudicial/Content/assets/css/theme_light.css" type="text/css" id="skin_color">
+    <link rel="stylesheet" href="https://www.csj.gov.py/gestionelectronicajudicial/Content/assets/css/print.css" type="text/css" media="print">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/assets/plugins/select2/select2.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/assets/plugins/bootstrap-modal/css/bootstrap-modal-bs3patch.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/assets/plugins/bootstrap-modal/css/bootstrap-modal.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/site.css" rel="stylesheet">
+    <!-- end: MAIN CSS -->
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/datatable/css/jquery.dataTables.css" rel="stylesheet">
+    <link href="https://www.csj.gov.py/gestionelectronicajudicial/Content/datatable/css/dataTables.tableTools.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+</head>
+
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html"><i class="clip-stack-2"></i>&nbsp;GESTION EXPEDIENTES PENDIENTES</a>
+            </div>
+        </div>
+    </div>
+
+
+<div class="page-container">
+    <div class="main-content">
+        <div class="container" style="min-height: 1594px; margin-top:50px;">
+            <h1 class="text-center">Pendientes</h1>
+
+                <table id="grillaExpediente" class="table table-hover table-striped dataTable no-footer DTTT_selectable" role="grid" aria-describedby="grillaExpediente_info">
+                <thead>
+                    <tr role="row"><th class="sorting ui-state-default" tabindex="0" aria-controls="grillaExpediente" rowspan="1" colspan="1" aria-label="Nro.: Activar para ordenar la columna de manera ascendente" style="width: 5%;"><div class="DataTables_sort_wrapper">Nro.<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th class="sorting ui-state-default" tabindex="0" aria-controls="grillaExpediente" rowspan="1" colspan="1" aria-label="Año: Activar para ordenar la columna de manera ascendente" style="width: 5%;"><div class="DataTables_sort_wrapper">Año<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th class="sorting ui-state-default" tabindex="0" aria-controls="grillaExpediente" rowspan="1" colspan="1" aria-label="Fecha sello cargo: Activar para ordenar la columna de manera ascendente" style="width: 12%;"><div class="DataTables_sort_wrapper">Fecha sello cargo<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th class="sorting ui-state-default" tabindex="0" aria-controls="grillaExpediente" rowspan="1" colspan="1" aria-label="Carátula: Activar para ordenar la columna de manera ascendente" style="width: 35%;"><div class="DataTables_sort_wrapper">Carátula<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th class="sorting ui-state-default" tabindex="0" aria-controls="grillaExpediente" rowspan="1" colspan="1" aria-label="Estado: Activar para ordenar la columna de manera ascendente" style="width: 10%;"><div class="DataTables_sort_wrapper">Estado<span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th></tr>
+                </thead>
+                <tbody id="tabla-casos">
+                    <tr id="group-id-grillaExpediente_JUZ-PAZ"><td class="group JUZ-PAZ expanded-group group-item-expander" colspan="5" data-group="JUZ-PAZ" data-group-level="0">JUZGADO DE PAZ {ASUNCION}</td></tr>
+
+                </tbody>
+                </table>
+                <script>
+                    // URL del archivo JSON
+                    const url = 'datos/ObtenerExpedientes.txt';
+
+                    // Seleccionar el tbody
+                    const tbody = document.getElementById('tabla-casos');
+
+                    // Función para cargar y mostrar los datos
+                    const cargarDatos = async () => {
+                      try {
+                        // Hacer la solicitud al archivo JSON
+                        const respuesta = await fetch(url);
+
+                        // Verificar si la respuesta es exitosa
+                        if (!respuesta.ok) {
+                          throw new Error(`Error al cargar los datos: ${respuesta.statusText}`);
+                        }
+
+                        // Convertir la respuesta a JSON
+                        const casos = await respuesta.json();
+
+                        // Generar filas dinámicas
+                        casos.forEach(caso => {
+                          const tr = document.createElement('tr');
+                          tr.setAttribute('role', 'row');
+                          tr.className = 'group-item group-item-JUZ-PAZ';
+                          tr.setAttribute('data-group', 'JUZ-PAZ');
+
+                          // Configurar el redireccionamiento
+                          tr.setAttribute('onclick', `window.location.href='caso.html?id=${caso.CodCasoJudicial}'`);
+
+                          // Agregar celdas
+                          tr.innerHTML = `
+                            <td>${caso.NroExpedienteNumero}</td>
+                            <td>${caso.NroExpedienteAnio}</td>
+                            <td>${caso.Caratula}</td>
+                            <td>${caso.EstadoCasoDespacho}</td>
+                          `;
+
+                          // Agregar la fila a la tabla
+                          tbody.appendChild(tr);
+                        });
+                      } catch (error) {
+                        console.error('Error al cargar los datos:', error);
+                      }
+                    };
+
+                    // Llamar a la función para cargar datos
+                    cargarDatos();
+                  </script>
+
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

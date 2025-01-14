@@ -1,0 +1,43 @@
+[
+    {
+        "CodDomicilio": 3106555,
+        "CodLocalidad": 1713014,
+        "NombreLocalidad": "CAPIATA",
+        "Calle": "1 DE NOVIEMBRE Y MBURUCUYA C/ 4TA CALLE",
+        "CodTipoDomicilio": 3,
+        "DescripcionTipoDomicilio": "Real",
+        "Telefono": "",
+        "DatoImpreciso": null,
+        "Email": null,
+        "TieneCroquis": "N",
+        "LinkUbicacion": null,
+        "CodParteCasoJudicial": 4105377
+    },
+        "CodDomicilio": 3106553,
+        "CodLocalidad": 1713227,
+        "NombreLocalidad": "ASUNCION",
+        "Calle": "11 Ptdas. Nro. 129 casi Independencia Nacional",
+        "CodTipoDomicilio": 1,
+        "DescripcionTipoDomicilio": "Procesal",
+        "Telefono": "",
+        "DatoImpreciso": null,
+        "Email": null,
+        "TieneCroquis": "N",
+        "LinkUbicacion": null,
+        "CodParteCasoJudicial": 4105376
+    },
+    {
+        "CodDomicilio": 3106554,
+        "CodLocalidad": 1713216,
+        "NombreLocalidad": "LAMBARE",
+        "Calle": "Iturbe casi Rio Verde",
+        "CodTipoDomicilio": 3,
+        "DescripcionTipoDomicilio": "Real",
+        "Telefono": "",
+        "DatoImpreciso": null,
+        "Email": null,
+        "TieneCroquis": "N",
+        "LinkUbicacion": null,
+        "CodParteCasoJudicial": 4105376
+    }
+]
