@@ -13,9 +13,9 @@ buttons.forEach(button => {
 });
 
 // URL del archivo JSON
-const url = 'datos/ObtenerExpedientes.json';
+const url = 'datos/ActacionesCaso.json';
 // Seleccionar el tbody
-const tbody = document.getElementById('tabla-casos');
+const tbody = document.getElementById('actuaciones-caso-lista');
 
 function convertirFecha(fechaRaw) {
   const timestamp = parseInt(fechaRaw.match(/\d+/)[0], 10);
@@ -50,11 +50,9 @@ const cargarDatos = async () => {
 
       // Agregar celdas
       tr.innerHTML = `
-        <td>${caso.NroExpedienteNumero}</td>
-        <td>${caso.NroExpedienteAnio}</td>
-        <td>${convertirFecha(caso.FechaSorteo)}</td>
-        <td>${caso.Caratula}</td>
-        <td>${caso.EstadoCasoDespacho}</td>
+        <td>${convertirFecha(caso.FechaActuacion)}</td>
+        <td>${caso.DescripcionActuacion}</td>
+        <td>${caso.DescripcionTipoActuacion}</td>
       `;
 
       // Agregar la fila a la tabla
