@@ -55,47 +55,35 @@
 
                 </tbody>
                 </table>
+
                 <script>
-                    // URL del archivo JSON
-                    const url = 'datos/ObtenerExpedientes.txt';
+                  fetch('https://cristian412.github.io/experimento-providencia/datos/ObtenerExpedientes.json')
+                    .then(response => response.json())
+                    .then(data => {
+                      console.log(data);
+                      // Aquí procesás los datos como desees
+                      // Generar filas dinámicas
+                      casos.forEach(caso => {
+                        const tr = document.createElement('tr');
+                        tr.setAttribute('role', 'row');
+                        tr.className = 'group-item group-item-JUZ-PAZ';
+                        tr.setAttribute('data-group', 'JUZ-PAZ');
 
-                    // Seleccionar el tbody
-                    const tbody = document.getElementById('tabla-casos');
+                        // Configurar el redireccionamiento
+                        tr.setAttribute('onclick', `window.location.href='caso.html?id=${caso.CodCasoJudicial}'`);
 
-                    // Función para cargar y mostrar los datos
-                    const cargarDatos = async () => {
-                      try {
-                        // Hacer la solicitud al archivo JSON
-                        const respuesta = await fetch(url);
+                        // Agregar celdas
+                        tr.innerHTML = `
+                          <td>${caso.NroExpedienteNumero}</td>
+                          <td>${caso.NroExpedienteAnio}</td>
+                          <td>${caso.Caratula}</td>
+                          <td>${caso.EstadoCasoDespacho}</td>
+                        `;
 
-                        // Verificar si la respuesta es exitosa
-                        if (!respuesta.ok) {
-                          throw new Error(`Error al cargar los datos: ${respuesta.statusText}`);
-                        }
-
-                        // Convertir la respuesta a JSON
-                        const casos = await respuesta.json();
-
-                        // Generar filas dinámicas
-                        casos.forEach(caso => {
-                          const tr = document.createElement('tr');
-                          tr.setAttribute('role', 'row');
-                          tr.className = 'group-item group-item-JUZ-PAZ';
-                          tr.setAttribute('data-group', 'JUZ-PAZ');
-
-                          // Configurar el redireccionamiento
-                          tr.setAttribute('onclick', `window.location.href='caso.html?id=${caso.CodCasoJudicial}'`);
-
-                          // Agregar celdas
-                          tr.innerHTML = `
-                            <td>${caso.NroExpedienteNumero}</td>
-                            <td>${caso.NroExpedienteAnio}</td>
-                            <td>${caso.Caratula}</td>
-                            <td>${caso.EstadoCasoDespacho}</td>
-                          `;
-
-                          // Agregar la fila a la tabla
-                          tbody.appendChild(tr);
+                        // Agregar la fila a la tabla
+                        tbody.appendChild(tr);
+                    })
+                    .catch(error => console.error('Error al cargar los datos:', error));
                         });
                       } catch (error) {
                         console.error('Error al cargar los datos:', error);
